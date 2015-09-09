@@ -12,6 +12,20 @@ module Mrkt
       get('/rest/v1/leads.json', params)
     end
 
+    def bulkimport_leads(leads, list_id: nil, lookup_field: nil)
+      post('/rest/v1/leads.json') do |req|
+        f.request :multipart
+        params = {
+            format: 'csv',
+            file: Faraday::UploadIO.new(leads, 'text/plain')
+        }
+        params[:lookupField] = lookup_field if lookup_field
+        params[:listId] = list_id if list_id
+
+        json_payload(req, params)
+      end
+    end
+
     def createupdate_leads(leads, action: 'createOrUpdate', lookup_field: nil, partition_name: nil, async_processing: nil)
       post('/rest/v1/leads.json') do |req|
         params = {

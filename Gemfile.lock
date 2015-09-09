@@ -84,6 +84,3 @@ DEPENDENCIES
   rubocop (~> 0.32.1)
   simplecov (~> 0.10.0)
   webmock (~> 1.21.0)
-
-BUNDLED WITH
-   1.10.6

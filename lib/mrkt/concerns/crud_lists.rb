@@ -9,6 +9,10 @@ module Mrkt
       get("/rest/v1/list/#{list_id}/leads.json", params)
     end
 
+    def get_all_lists
+      get("/rest/v1/lists.json")
+    end
+
     def add_leads_to_list(list_id, lead_ids)
       post("/rest/v1/lists/#{list_id}/leads.json") do |req|
         params = {
